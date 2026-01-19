@@ -1,7 +1,7 @@
 # ==============================================================
 # 📊 Spatial Clustering Dashboard (Eti-Osa & Surulere)
 # ==============================================================
-import os
+import sys, os
 import time
 import threading
 import traceback
@@ -20,9 +20,14 @@ from sklearn.preprocessing import MinMaxScaler
 from branca.colormap import linear
 from folium.features import GeoJsonPopup, GeoJsonTooltip
 from socioecon_utils import merge_with_clusters
-from config import MODEL_DIRS, SOCIOECON_DIRS, OTHER_LAYERS_DIR
 from visualization_utils import create_cluster_stats_plot, create_dendrogram
 import tempfile
+sys.path.append(os.path.join(os.path.dirname(__file__), "utils"))
+
+# Directories 
+MODEL_DIRS = os.environ.get("MODEL_DIRS", "./gdis-dashboard/model_files")
+SOCIOECON_DIRS = os.environ.get("SOCIOECON_DIRS", "./gdis-dashboard/input_socioecon_files")
+OTHER_LAYERS_DIR = os.environ.get("OTHER_LAYERS_DIR", "./gdis-dashboard/other_layers")
 
 warnings.filterwarnings("ignore")
 pn.extension('plotly', 'floatpanel', 'tabulator')
